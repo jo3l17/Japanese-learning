@@ -6,16 +6,18 @@ const accountRouter = express.Router();
 
 const calendar = [false, false, false, false, false, false, false];
 
-accountRouter.route("/").get((req, res) => {
-  if (!req.user) {
-    res.render("account", {
-      errorMessage: "",
-    });
-  } else {
-    res.render("profile", {
-      username: req.user.username,
-    });
-  }
+accountRouter.route('/').get((req, res) => {
+    if (!req.user){
+        res.render('account', {
+          errorMessage:''
+        });
+    } else {
+        res.render('profile', {
+          username: req.user.username,
+          userID: req.user._id
+        });
+    }
+    
 });
 
 accountRouter.route("/signUp").post(async (req, res) => {
